@@ -26,18 +26,14 @@ Libraries: Jsoup for web scraping, Gson for JSON conversion
 Server: Jetty for running the web application
 
 ## Prerequisites
-Java: 11 or higher
-Maven: 3.6.3 or higher
-Jetty: 9.4.30.v20200611 or higher
-
-You have one week to work on the submission from the time when you receive it. To submit you assignment, zip up your project (`imagefinder.zip`) and email it back to me. **Please include a list of URLs that you used to test in your submissions.** You should place them in the attached `test-links.txt` file found in the root of this project.
+- Java: 11 or higher
+- Maven: 3.6.3 or higher
+- Jetty: 9.4.30.v20200611 or higher
 
 ## Structure
-The ImageFinder servlet is found in `src/main/java/com/eulerity/hackathon/imagefinder/ImageFinder.java`. This is the only provided Java class. Feel free to add more classes or packages as you see fit. 
-
-The main landing page for this project can be found in `src/main/webapp/index.html`. This page contains more instructions and serves as the starting page for the web application. You may edit this page as much as it suits you, and/or add other pages. 
-
-Finally, in the root directory of this project, you will find the `pom.xml`. This contains the project configuration details used by maven to build the project. If you want/need to use outside dependencies, you should add them to this file.
+1. The ImageFinder servlet is found in `src/main/java/com/eulerity/hackathon/imagefinder/ImageFinder.java`.
+2. The main landing page for this project can be found in `src/main/webapp/index.html`. This page contains more instructions and serves as the starting page for the web application. 
+3. Finally, in the root directory of this project, you will find the `pom.xml`. This contains the project configuration details used by maven to build the project.
 
 ## Running the Project
 Here we will detail how to setup and run this project so you may get started, as well as the requirements needed to do so.
@@ -61,9 +57,9 @@ To run the project, use the following command to start the server:
 
 >`mvn clean test package jetty:run`
 
+Open application in your browser:
 
-## Submission
-When you are finished working on the project, before zipping up and emailing back your submission, **PLEASE RUN ONE LAST `mvn clean` COMMAND TO REMOVE ANY UNNECESSARY FILES FROM YOUR SUBMISSION**. Please also make sure to add the URLs you used to test your project to the `test-links.txt` file. After doing these things, you may zip up the root directory (`imagefinder`) and email it back to us.
+>`http://localhost:9090`
 
 ## Usage
 1. Enter a URL into the input field.
