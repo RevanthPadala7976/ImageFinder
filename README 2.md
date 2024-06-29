@@ -1,3 +1,13 @@
+# ImageFinder
+
+![Java](https://img.shields.io/badge/Java-11%2B-007396?style=for-the-badge&logo=java&logoColor=white)
+![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![Jsoup](https://img.shields.io/badge/Jsoup-1.14.3-brightgreen?style=for-the-badge)
+![Maven](https://img.shields.io/badge/Maven-3.6.3%2B-C71A36?style=for-the-badge&logo=apache-maven&logoColor=white)
+![Jetty](https://img.shields.io/badge/Jetty-9.4.30.v20200611-000000?style=for-the-badge&logo=eclipse&logoColor=white)
+![MIT License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
+
 ## Overview
 
 Image Finder is a web application that allows users to crawl a provided URL and extract all images, including favicons and SVG icons, from the webpage. The results are displayed in a user-friendly interface and returned as a JSON response.
