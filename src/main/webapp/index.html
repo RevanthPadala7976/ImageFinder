@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Image Finder</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <h1>Image Finder</h1>
+
+    <h2>How It Works?</h2>
+    <div class="list">
+      <ul>
+        <li>
+          Pressing the submit button on this page will make a POST request to
+          /main
+        </li>
+        <li>
+          That request will contain a form parameter with the URL populated in
+          the input box below
+        </li>
+        <li>
+          The ImageFinder servlet will respond to the request with a list of
+          image URLs
+        </li>
+        <li>
+          This page contains JavaScript to send the request and use the response
+          to build a list of images
+        </li>
+      </ul>
+    </div>
+    <div class="content">
+      <div class="input">
+        <form>
+          <input
+            class="textbox"
+            type="text"
+            name="url"
+            placeholder="Enter URL to Crawl"
+          />
+        </form>
+        <button type="button">Submit!</button>
+      </div>
+      <div class="output">
+        <p id="status"></p>
+        <textarea class="results" readonly placeholder="Output"></textarea>
+      </div>
+    </div>
+
+    <script>
+      // Get references to the HTML elements
+      var statusText = document.querySelector("#status");
+      var resultTextArea = document.querySelector("textarea.results");
+      var urlInput = document.querySelector("input[name=url]");
+
+      // Callback function to handle the API response
+      apiCallBack = function (xhr, callback) {
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+          statusText.textContent = ""; // Clear the status text
+          if (xhr.status != 200) {
+            let message =
+              xhr.status + ":" + xhr.statusText + ":" + xhr.responseText;
+            alert(message);
+            throw "API call returned bad code: " + xhr.status;
+          }
+          let response = xhr.responseText ? JSON.parse(xhr.responseText) : null;
+          if (callback) {
+            callback(response);
+          }
+        }
+      };
+
+      // Function to update the textarea with the JSON response
+      updateList = function (response) {
+        resultTextArea.value = JSON.stringify(response, null, 2); // Fromat JSON with 2 spaces
+      };
+
+      // Function to make the API call to the server
+      makeApiCall = function (url, method, obj, callback) {
+        let xhr = new XMLHttpRequest();
+        xhr.open(method, url);
+        xhr.onreadystatechange = apiCallBack.bind(null, xhr, callback);
+        xhr.setRequestHeader(
+          "Content-Type",
+          "application/x-www-form-urlencoded"
+        );
+        xhr.send(
+          obj
+            ? obj instanceof FormData || obj.constructor == String
+              ? obj
+              : JSON.stringify(obj)
+            : null
+        );
+      };
+
+      // Event listener for the submit button click
+      document
+        .querySelector("button")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+          statusText.textContent = "Processing..."; // Show the processing message
+          resultTextArea.value = ""; // Clear previous results
+          makeApiCall(
+            "/main",
+            "POST",
+            "url=" + encodeURIComponent(urlInput.value),
+            updateList
+          );
+        });
+    </script>
+  </body>
+</html>
